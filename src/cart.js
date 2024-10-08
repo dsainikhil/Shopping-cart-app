@@ -107,6 +107,16 @@ let removeItem = ((id)=> {
   calculation();
 });
 
+let checkout=()=> {
+  label.innerHTML=`
+  <h3>Thank you for Shopping! Items will be delivered to your location soon.<h3>
+  `;
+  ShoppingCart.innerHTML='';
+  basket = [];
+  calculation();
+  localStorage.setItem("data", JSON.stringify(basket));
+}
+
 let clearCart = ()=> {
   basket = [];
   generateCartItems();
@@ -123,8 +133,8 @@ let totalAmount = ()=> {
     }).reduce((x,y)=> x+y,0);
     label.innerHTML = `
     <h2>Total Bill: $ ${amount}</h2>
-    <button class="checkout">Checkout</button>
-    <button onclick="clearCart(f)" class="removeAll">Clear Cart</button>
+    <button onclick="checkout()" class="checkout">Checkout</button>
+    <button onclick="clearCart()" class="removeAll">Clear Cart</button>
     `
   } else return;
 
